@@ -8,12 +8,18 @@ const Heading = styled.h1`
       font-weight: 600;
     `}
   ${props =>
+    props.as === 'h1-center' &&
+    css`
+      font-size: 3rem;
+      font-weight: 600;
+      text-align: center;
+    `}
+  ${props =>
     props.as === 'h2' &&
     css`
       font-size: 2rem;
       font-weight: 600;
     `}
-      
     ${props =>
     props.as === 'h3' &&
     css`
@@ -21,6 +27,7 @@ const Heading = styled.h1`
       font-weight: 500;
     `}
 
+    
 
   line-height: 1.4;
 `;

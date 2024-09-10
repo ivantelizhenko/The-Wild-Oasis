@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
 const Menu = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -32,7 +31,7 @@ const StyledToggle = styled.button`
 `;
 
 const StyledList = styled.ul`
-  position: absolute;
+  position: fixed;
   z-index: 1;
 
   background-color: var(--color-grey-0);
@@ -90,13 +89,14 @@ function Toggle({ id }) {
   const { openId, open, close, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    e.stopPropagation();
+
     const rect = e.target.closest('button').getBoundingClientRect();
 
     setPosition({
-      x: rect.width,
-      y: rect.height,
+      x: window.innerWidth - rect.width - rect.x,
+      y: rect.y + rect.height + 8,
     });
-
     openId === '' || openId !== id ? open(id) : close();
   }
 
@@ -106,9 +106,10 @@ function Toggle({ id }) {
     </StyledToggle>
   );
 }
+
 function List({ children, id }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutsideClick(close);
+  const ref = useOutsideClick(close, false);
 
   if (openId !== id) return null;
 
@@ -131,8 +132,7 @@ function Button({ children, icon, onClick }) {
   return (
     <li>
       <StyledButton onClick={handleClick}>
-        {icon}
-        <span>{children} </span>
+        {icon} <span>{children}</span>
       </StyledButton>
     </li>
   );

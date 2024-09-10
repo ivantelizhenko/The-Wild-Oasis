@@ -25,7 +25,7 @@ dist-ssr
 
 # my own choice
 .eslintrc.cjs
-.prettierrc
+.prettierrcw
 .DS_Store
 .prettierignore
 node_modules
