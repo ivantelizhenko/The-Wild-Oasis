@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Logo from './Logo';
 import MainNav from './MainNav';
+import Uploader from '../../src/data/Uploader';
 
 const StyledSidebar = styled.aside`
   display: flex;
