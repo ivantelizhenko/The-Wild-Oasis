@@ -1,4 +1,3 @@
-Sorry, this project hasn't been ready yet...
 
 Good experience with:
 
